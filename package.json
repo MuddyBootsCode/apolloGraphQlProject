@@ -6,8 +6,7 @@
   "scripts": {
     "server": "nodemon server.js",
     "client": "cd client && npm start",
-    "dev":
-      "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
+    "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\""
   },
   "repository": {
     "type": "git",
@@ -24,7 +23,6 @@
     "url": "https://github.com/MuddyBootsCode/apolloGraphQlProject/issues"
   },
   "homepage": "https://github.com/MuddyBootsCode/apolloGraphQlProject#readme",
-  
   "dependencies": {
     "apollo-server-express": "^1.3.6",
     "bcrypt": "^2.0.1",
