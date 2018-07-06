@@ -1,0 +1,24 @@
+{
+  "name": "apollo",
+  "version": "1.0.0",
+  "description": "Apollo/QraphQl Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuddyBootsCode/apolloGraphQlProject.git"
+  },
+  "keywords": [
+    "Apollo",
+    "GraphQl",
+    "React"
+  ],
+  "author": "Muddy Boots Code",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MuddyBootsCode/apolloGraphQlProject/issues"
+  },
+  "homepage": "https://github.com/MuddyBootsCode/apolloGraphQlProject#readme"
+}
