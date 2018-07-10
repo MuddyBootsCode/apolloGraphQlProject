@@ -20,7 +20,6 @@ const schema = makeExecutableSchema({
 });
 
 
-
 //Connect to MLAB mongodb database
 mongoose
     .connect(process.env.MONGO_URI)
@@ -35,7 +34,7 @@ const app = express();
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql'}));
 
 //Connect schemas with GraphQl
-app.use('/graphql', graphqlExpress({
+app.use('/graphql', bodyParser.json(), graphqlExpress({
     schema,
     context: {
         Recipe,
