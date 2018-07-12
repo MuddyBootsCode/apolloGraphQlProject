@@ -1,16 +1,18 @@
 exports.typeDefs = `
 
     type Recipe {
+        _id: ID
         name: String!
         category: String!
         description: String!
         instructions: String!
         createdDate: String
         likes: Int
-        userName: String
+        username: String
     }
     
     type User{
+        _id: ID
         username: String! @unique
         password: String!
         email: String!
@@ -21,6 +23,10 @@ exports.typeDefs = `
     type Query {
         getAllRecipes:[Recipe]
     }
+    
+    type Token {
+        token: String!
+    }
 
     type Mutation {
           addRecipe(
@@ -29,6 +35,12 @@ exports.typeDefs = `
           category: String!, 
           instructions: String!, 
           username: String): Recipe
+          
+          signupUser(
+            username: String!
+            email: String!
+            password: String!         
+          ):  Token
     }
 
 `;
