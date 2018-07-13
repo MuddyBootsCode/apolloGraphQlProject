@@ -38,7 +38,6 @@ exports.typeDefs = `
           
           signinUser(username: String!, password: String!): Token
           
-          
           signupUser(
             username: String! 
             email: String!

@@ -49,7 +49,6 @@ exports.resolvers = {
                 throw new Error('Invalid Password');
             }
             return { token:createToken(user, process.env.SECRET, "1hr")};
-
         },
 
         signupUser: async (root,{ username, email, password }, { User }) => {
