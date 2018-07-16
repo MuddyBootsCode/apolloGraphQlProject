@@ -16,8 +16,6 @@ const Signout = ({ history }) => (
 
         {client => {
 
-
-
             return (
                 <button onClick={() => handleSignout(client, history)}>Signout</button>
             )

@@ -54,14 +54,17 @@ class Signin extends React.Component{
                     {( signinUser , { data, loading, error}) => {
 
                         return (
+
                             <form className="form" onSubmit={event => this.handleSubmit (event, signinUser)}>
                                 <input type="text" name="username" placeholder="Username" value={username} onChange={this.handleChange} required/>
                                 <input type="password" name="password" placeholder="Password" value={password} onChange={this.handleChange} required/>
                                 <button type="submit" disabled={ loading || this.validateForm() }  className="button-primary">Submit</button>
                                 {error && <Error error={error}/>}
                             </form>
+
                         )
                     }}
+
                 </Mutation>
             </div>
         )
