@@ -6,16 +6,28 @@ export const GET_ALL_RECIPES = gql`
   
     query {
         getAllRecipes {
-            name 
-            description
-            instructions
+            _id
+            name
             category
-            likes
-            createdDate
         }
     }
 `;
 
+export const GET_RECIPE = gql`
+    
+    query($_id: ID!){
+        getRecipe(_id: $_id) {
+            _id
+            name
+            category
+            description
+            instructions
+            createdDate
+            likes
+        }
+    }
+    
+`;
 //Recipe Mutations
 
 //User Queries

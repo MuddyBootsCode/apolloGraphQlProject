@@ -8,7 +8,8 @@ import Search from './components/Recipe/Search';
 import withSession from './components/withSession';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile/Profile';
-import AddRecipe from './components/Recipe/AddRecipe'
+import AddRecipe from './components/Recipe/AddRecipe';
+import RecipePage from './components/Recipe/RecipePage';
 import { BrowserRouter as Router, Route, Switch, Redirect }  from 'react-router-dom'
 
 import ApolloClient from 'apollo-boost';
@@ -46,7 +47,8 @@ const Root = ({ refetch, session }) => (
                     <Route path="/search" component={Search}/>
                     <Route path="/signin" render={() => <Signin refetch={refetch} />} />
                     <Route path="/signup" render={() => <Signup refetch={refetch} />} />
-                    <Route path ="/recipe/add" component={AddRecipe}/>
+                    <Route path ="/recipe/add" render={() => <AddRecipe session={session}/>}/>
+                    <Route path="/recipes/:_id" component={RecipePage}/>
                     <Route path ="/profile" component={Profile}/>
                     <Redirect to="/" />
                 </Switch>
