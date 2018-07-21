@@ -1,21 +1,31 @@
 import React from 'react';
-import { Mutation } from 'react-apollo';yield
+import { Mutation } from 'react-apollo';
+import {ADD_RECIPE} from "../../queries";
+import Error from "../Error";
+import { withRouter } from 'react-router-dom';
 
+const initialState = {
+
+    name: '',
+
+    category:'Breakfast',
+
+    description: '',
+
+    instructions: '',
+
+    username: ''
+
+};
 
 class AddRecipe extends React.Component{
 
-    state = {
 
-        name: '',
 
-        category:'Breakfast',
+    state = { ...initialState};
 
-        description: '',
-
-        instructions: '',
-
-        username: ''
-
+    clearState = () => {
+        this.setState({ ...initialState });
     };
 
     componentDidMount(){
@@ -24,38 +34,64 @@ class AddRecipe extends React.Component{
         });
     }
 
+    handleSubmit = (event, addRecipe) => {
+        event.preventDefault();
+        addRecipe().then(({ data }) => {
+            console.log(data);
+            this.clearState();
+            this.props.history.push('/');
+        });
+    };
+
     handleChange = event => {
         const { name, value } = event.target;
-        //console.log(name, ":", value);
-        this.setState({
 
-            [name]: value
+        this.setState({[name]: value});
+    };
 
-        });
+    validateForm = () => {
+        const { name, category, description, instructions, username } = this.state;
+
+        const isInvalid = !name || !category || !description || !instructions || !username;
+
+        return isInvalid;
+
     };
 
     render() {
 
-        const { name, category, description, instructions } = this.state;
+        const { name, category, description, instructions, username } = this.state;
 
-   return (
+        return(
+            <Mutation mutation={ADD_RECIPE} variables={{ name, category, description, instructions, username }}>
 
-    <div className="App">
-        <h2 className="App">Add Recipe</h2>
-        <form className="form">
-            <input type="text" name="name" onChange={this.handleChange} placeholder="Recipe Name" value={name}/>
-            <select name="category" onChange={this.handleChange} value={category}>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Snack">Snack</option>
-            </select>
-            <input type="text" name="description" onChange={this.handleChange} placeholder="Add Description" value={description}/>
-            <textarea name="instructions" onChange={this.handleChange} placeholder="Add Instructions" value={instructions}></textarea>
-            <button type="submit" className="button-primary">Submit</button>
-        </form>
-    </div>
+                {( addRecipe, { data, loading, error}) => {
 
-)}};
+                    return (
 
-export default AddRecipe;
+                        <div className="App">
+                            <h2 className="App">Add Recipe</h2>
+                            <form className="form" onSubmit={event => this.handleSubmit(event, addRecipe)}>
+                                <input type="text" name="name" onChange={this.handleChange} placeholder="Recipe Name" value={name}/>
+                                <select name="category" onChange={this.handleChange} value={category}>
+                                    <option value="Breakfast">Breakfast</option>
+                                    <option value="Lunch">Lunch</option>
+                                    <option value="Dinner">Dinner</option>
+                                    <option value="Snack">Snack</option>
+                                </select>
+                                <input type="text" name="description" onChange={this.handleChange} placeholder="Add Description" value={description}/>
+                                <textarea name="instructions" onChange={this.handleChange} placeholder="Add Instructions" value={instructions}></textarea>
+                                <button type="submit" className="button-primary" disabled={loading || this.validateForm()}>Submit</button>
+                                {error && <Error error={error}/>}
+                            </form>
+                        </div>
+
+                    );
+
+                }}
+            </Mutation>
+        );
+    }
+}
+
+export default withRouter(AddRecipe);

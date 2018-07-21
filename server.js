@@ -43,22 +43,16 @@ app.use(cors(corsOptions));
 // Set up JWT authentication middleware
 
 app.use(async (req, res, next) => {
-    const token = req.headers['authorization'];
-    if (token !== "null"){
-        try{
-
-            const currentUser =  await jwt.verify(token, process.env.SECRET);
+    const token = req.headers["authorization"];
+    if (token !== "null") {
+        try {
+            const currentUser = await jwt.verify(token, process.env.SECRET);
             req.currentUser = currentUser;
-
-        } catch (err){
-
+        } catch (err) {
             console.error(err);
-
         }
     }
-
     next();
-
 });
 
 //Create GraphiQl application

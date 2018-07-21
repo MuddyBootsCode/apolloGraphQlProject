@@ -24,11 +24,28 @@ export const GET_RECIPE = gql`
             instructions
             createdDate
             likes
+            username
         }
     }
     
 `;
 //Recipe Mutations
+
+export const ADD_RECIPE = gql`
+
+    mutation($name: String!, $description: String!, $category: String!, $instructions: String!, $username: String){
+        addRecipe(name: $name, description: $description, category: $category, instructions: $instructions, username: $username){
+            _id
+            name
+            category
+            description
+            instructions
+            createdDate
+            likes
+        }
+    }
+    
+`;
 
 //User Queries
 

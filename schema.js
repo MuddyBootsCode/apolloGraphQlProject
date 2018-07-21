@@ -11,7 +11,7 @@ exports.typeDefs = `
         username: String
     }
     
-    type User{
+    type User {
         _id: ID
         username: String! @unique
         password: String!
