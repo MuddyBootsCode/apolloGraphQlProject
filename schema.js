@@ -28,6 +28,8 @@ exports.typeDefs = `
         getCurrentUser: User
         
         searchRecipes(searchTerm: String): [Recipe]
+        
+        getUserRecipes(username: String!): [Recipe]
 
     }
     

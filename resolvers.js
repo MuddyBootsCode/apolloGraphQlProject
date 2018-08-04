@@ -27,11 +27,33 @@ exports.resolvers = {
 
         searchRecipes: async (root, { searchTerm }, { Recipe }) => {
             if (searchTerm) {
+                const searchResults = await Recipe.find({
+                   $text: { $search: searchTerm }
+                },{
+
+                    score: { $meta: "textScore"}
+
+                }).sort({
+
+                    score: { $meta: "textScore"}
+
+                });
+
+                return searchResults;
 
             } else {
                 const recipes = await Recipe.find().sort({ likes: 'desc', createdDate: 'desc'});
                 return recipes;
             }
+        },
+
+        getUserRecipes: async (root, { username }, { Recipe }) => {
+          const userRecipes = await Recipe.find({ username}).sort({
+              createdDate: 'desc'
+          });
+
+          return userRecipes;
+
         },
 
         getCurrentUser: async (root, args, { currentUser, User }) => {
