@@ -53,7 +53,7 @@ exports.typeDefs = `
             password: String!         
           ):  Token
           
-          deleteUserRecipe(_id: ID): Recipe
+           deleteUserRecipe(_id: ID): Recipe
     }
 
 `;
