@@ -15,13 +15,18 @@ const UserRecipes = ({ username }) => (
                 console.log(data);
 
                 return (
-                    <h3>Your Recipes</h3>
-                    {data.getUserRecipes.map(recipe => (
-                        <li>
-                            <p></p>
-                        </li>
+                    <ul>
+                        <h3>Your Recipes</h3>
 
-                    ))}
+                        {data.getUserRecipes.map(recipe => (
+                            <li key={recipe._id}>
+                                <Link to={`/recipes/${recipe._id}`}>
+                                    <p>{recipe.name}</p>
+                                </Link>
+                            </li>
+
+                        ))}
+                    </ul>
                 )
             }}
 
