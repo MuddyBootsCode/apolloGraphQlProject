@@ -1,4 +1,5 @@
 import { gql } from 'apollo-boost';
+import { recipeFramgments} from "./fragments";
 
 
 // Recipie Queries
@@ -17,17 +18,10 @@ export const GET_RECIPE = gql`
     
     query($_id: ID!){
         getRecipe(_id: $_id) {
-            _id
-            name
-            category
-            description
-            instructions
-            createdDate
-            likes
-            username
+            ...CompleteRecipe
         }
     }
-    
+    ${recipeFramgments.recipe}
 `;
 
 export const SEARCH_RECIPES = gql`
@@ -45,16 +39,10 @@ export const ADD_RECIPE = gql`
 
     mutation($name: String!, $description: String!, $category: String!, $instructions: String!, $username: String){
         addRecipe(name: $name, description: $description, category: $category, instructions: $instructions, username: $username){
-            _id
-            name
-            category
-            description
-            instructions
-            createdDate
-            likes
+            ...CompleteRecipe
         }
     }
-    
+    ${recipeFramgments.recipe}
 `;
 
 export const DELETE_USER_RECIPE = gql`
@@ -68,11 +56,19 @@ export const DELETE_USER_RECIPE = gql`
 export const LIKE_RECIPE = gql`
     mutation($_id: ID!, $username: String!){
         likeRecipe(_id: $_id, username: $username){
-            _id
-            likes
+           ...LikeRecipe
         }
     }
-    
+    ${recipeFramgments.like}
+`;
+
+export const UNLIKE_RECIPE = gql`
+    mutation($_id: ID!, $username: String!){
+        unlikeRecipe(_id: $_id, username: $username){
+            ...LikeRecipe
+        }
+    }
+    ${recipeFramgments.like}
 `;
 
 //User Queries

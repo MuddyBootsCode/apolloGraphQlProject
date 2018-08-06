@@ -38,7 +38,6 @@ class AddRecipe extends React.Component{
     handleSubmit = (event, addRecipe) => {
         event.preventDefault();
         addRecipe().then(({ data }) => {
-            // console.log(data);
             this.clearState();
             this.props.history.push("/");
         });
