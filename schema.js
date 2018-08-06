@@ -54,6 +54,8 @@ exports.typeDefs = `
           ):  Token
           
            deleteUserRecipe(_id: ID): Recipe
+           
+           likeRecipe(_id: ID!, username: String!): Recipe
     }
 
 `;

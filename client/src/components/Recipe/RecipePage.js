@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import { GET_RECIPE} from "../../queries";
+import LikeRecipe from './LikeRecipe';
 
 const RecipePage = ({ match }) => {
 
@@ -13,16 +14,17 @@ const RecipePage = ({ match }) => {
            {({ data, loading, error }) => {
                if (loading) return <div>Loading...</div>
                if (error) return <div>{error}</div>
-               console.log(data);
+
+               const { getRecipe: { name, category, description, instructions, likes, username} } = data;
 
                return <div className="App">
-                           <h2>{data.getRecipe.name}</h2>
-                           <p>Category: {data.getRecipe.category}</p>
-                           <p>Description: {data.getRecipe.description}</p>
-                           <p>Instructions: {data.getRecipe.instructions}</p>
-                           <p>Likes: {data.getRecipe.likes}</p>
-                           <p>Created By: {data.getRecipe.username}</p>
-                           <button>Like</button>
+                           <h2>{name}</h2>
+                           <p>Category: {category}</p>
+                           <p>Description: {description}</p>
+                           <p>Instructions: {instructions}</p>
+                           <p>Likes: {likes}</p>
+                           <p>Created By: {username}</p>
+                           <LikeRecipe _id={_id}/>
                       </div>
            }}
 
