@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import { GET_RECIPE} from "../../queries";
 import LikeRecipe from './LikeRecipe';
+import Spinner from '../Spinner';
 
 const RecipePage = ({ match }) => {
 
@@ -12,19 +13,39 @@ const RecipePage = ({ match }) => {
        <Query query={ GET_RECIPE } variables={{ _id }}>
 
            {({ data, loading, error }) => {
-               if (loading) return <div>Loading...</div>
+               if (loading) return <Spinner/>
                if (error) return <div>{error}</div>
 
-               const { getRecipe: { name, category, description, instructions, likes, username} } = data;
+               const { getRecipe: { name, imageUrl, category, description, instructions, likes, username} } = data;
 
                return <div className="App">
-                           <h2>{name}</h2>
-                           <p>Category: {category}</p>
-                           <p>Description: {description}</p>
-                           <p>Instructions: {instructions}</p>
-                           <p>Likes: {likes}</p>
-                           <p>Created By: {username}</p>
-                           <LikeRecipe _id={_id}/>
+                           <div className="recipe-image" style={{ background: `url(${imageUrl})
+                            center center / cover no-repeat`}}>
+                           </div>
+                           <div className="recipe">
+                               <div className="recipe-header">
+                                   <h2 className="recipe-name">
+                                       <strong>{name}</strong>
+                                   </h2>
+                                   <h5>
+                                       <strong>
+                                           {category}
+                                       </strong>
+                                       <p>Created by {username}</p>
+                                       <p>{likes}<span role="img" aria-label="sunglasses-emoji">😎</span></p>
+                                   </h5>
+                               </div>
+                               <blockquote className="recipe-description">
+                                   {description}
+                               </blockquote>
+                               <h3 className="recipe-instructions__title">
+                                   Instructions
+                               </h3>
+                               <div className="recipe-instructions" dangerouslySetInnerHTML={{ __html: instructions }}>
+
+                               </div>
+                               <LikeRecipe _id={_id} className="App"/>
+                           </div>
                       </div>
            }}
 

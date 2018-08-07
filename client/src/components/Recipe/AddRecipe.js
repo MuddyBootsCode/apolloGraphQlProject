@@ -4,10 +4,13 @@ import {ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES} from "../../queries";
 import Error from "../Error";
 import { withRouter } from 'react-router-dom';
 import withAuth from '../withAuth';
+import CKEditor from 'react-ckeditor-component';
 
 const initialState = {
 
     name: '',
+
+    imageUrl: '',
 
     category:'Breakfast',
 
@@ -48,10 +51,15 @@ class AddRecipe extends React.Component{
         this.setState({ [name]: value });
     };
 
-    validateForm = () => {
-        const { name, category, description, instructions, username } = this.state;
+    handleEditorChange = event => {
+       const newContent = event.editor.getData();
+       this.setState({ instructions: newContent });
+    };
 
-        const isInvalid = !name || !category || !description || !instructions || !username;
+    validateForm = () => {
+        const { name, imageUrl, category, description, instructions, username } = this.state;
+
+        const isInvalid = !name || !imageUrl || !category || !description || !instructions || !username;
 
         return isInvalid;
 
@@ -70,10 +78,10 @@ class AddRecipe extends React.Component{
 
     render() {
 
-        const { name, category, description, instructions, username } = this.state;
+        const { name, imageUrl, category, description, instructions, username } = this.state;
 
         return(
-            <Mutation mutation={ADD_RECIPE} variables={{ name, category, description, instructions, username }} update={this.updateCache}
+            <Mutation mutation={ADD_RECIPE} variables={{ name, imageUrl, category, description, instructions, username }} update={this.updateCache}
             refetchQueries={() => [
                 { query: GET_USER_RECIPES, variables: { username } }
                 ]}
@@ -87,6 +95,7 @@ class AddRecipe extends React.Component{
                             <h2 className="App">Add Recipe</h2>
                             <form className="form" onSubmit={event => this.handleSubmit(event, addRecipe)}>
                                 <input type="text" name="name" onChange={this.handleChange} placeholder="Recipe Name" value={name}/>
+                                <input type="text" name="imageUrl" onChange={this.handleChange} placeholder="Recipe Image URL" value={imageUrl}/>
                                 <select name="category" onChange={this.handleChange} value={category}>
                                     <option value="Breakfast">Breakfast</option>
                                     <option value="Lunch">Lunch</option>
@@ -94,7 +103,8 @@ class AddRecipe extends React.Component{
                                     <option value="Snack">Snack</option>
                                 </select>
                                 <input type="text" name="description" onChange={this.handleChange} placeholder="Add Description" value={description}/>
-                                <textarea name="instructions" onChange={this.handleChange} placeholder="Add Instructions" value={instructions}></textarea>
+                                <label htmlFor="instructions">Add Instructions</label>
+                                <CKEditor name="instructions" content={instructions} events={{ change: this.handleEditorChange}}/>
                                 <button type="submit" className="button-primary" disabled={loading || this.validateForm()}>Submit</button>
                                 {error && <Error error={error}/>}
                             </form>

@@ -24,7 +24,7 @@ const UserInfo = ({ session }) => {
                         <Link to={`/recipes/${favorite._id}`}><p>{favorite.name}</p></Link>
                     </li>
                 ))}
-                {!favorites.length && <p>You don't have any favorite recipes <u>yet</u>. <strong>Add Some!</strong></p>}
+                {!favorites.length && <p>You don't have any favorite recipes <u>yet</u>. <Link to={'/'}>Add Some!</Link></p>}
             </ul>
         </div>
     );

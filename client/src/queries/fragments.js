@@ -1,11 +1,12 @@
 import { gql } from 'apollo-boost';
 
-export const recipeFramgments = {
+export const recipeFragments = {
   recipe: gql`
       
       fragment CompleteRecipe on Recipe {
           _id
           name
+          imageUrl
           category
           description
           instructions
