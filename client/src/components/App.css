@@ -193,7 +193,7 @@ nav a:link {
 
 .recipe-header {
   overflow: hidden;
-  background-image: url(https://bit.ly/2JqRbuI);
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZvoAsmnSNE41dU1NE3-pTrl2d90XYIeFF-0L8sgBUVh3Fdlmx);
 }
 
 .recipe-header > p {
@@ -213,7 +213,6 @@ nav a:link {
 .recipe-name {
   color: #1eaedb;
   text-decoration: underline;
-  text-decoration-style: wavy;
 }
 
 .recipe-instructions {
@@ -255,8 +254,9 @@ nav a:link {
 }
 
 .spinner {
-  text-align: center;
-  padding: 5em;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 
