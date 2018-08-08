@@ -265,3 +265,6 @@ button[disabled=disabled], button:disabled {
   background-color: grey;
 }
 
+a {
+  text-decoration: none;
+}
