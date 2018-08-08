@@ -3,8 +3,8 @@ import { RingLoader } from 'react-spinners';
 
 const Spinner = () => {
     return (
-        <div className="spinner">
-            <RingLoader color={'#1eaedb'} size={60} margin={'3px'}/>
+        <div className="spinner App">
+            <RingLoader color={'#1eaedb'} size={120} margin={'3px'}/>
         </div>
     );
 };
