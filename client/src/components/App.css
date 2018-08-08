@@ -85,6 +85,7 @@ nav a:link {
   text-align: center;
   background: #ddd;
   transition: all 0.3s;
+  height: 100%
 }
 
 .card:hover {
