@@ -1,8 +1,15 @@
+@font-face {
+    font-family: fenwick;
+    src: url("fenwick_ol_free.ttf");
+}
+
 .App {
   text-align: center;
 }
 
+
 nav {
+  font-family: fenwick;
   text-align: center;
   padding-bottom: 0.2em;
   padding-top: 2em;
@@ -86,6 +93,10 @@ nav a:link {
   background: #ddd;
   transition: all 0.3s;
   height: 100%
+}
+
+.card h4 {
+    font-family: fenwick;
 }
 
 .card:hover {
