@@ -7,6 +7,10 @@
   text-align: center;
 }
 
+body {
+  background-color: #20456E;
+}
+
 
 nav {
   font-family: fenwick;
@@ -15,6 +19,7 @@ nav {
   padding-top: 2em;
   background-color: #efefef;
   box-shadow: -3px 3px 10px 0px rgba(168, 168, 168, 0.7);
+  background-image: url("https://res.cloudinary.com/dqfo7smhl/image/upload/v1535591436/Backgrounds/IMG_7326.jpg");
 }
 
 nav ul {
@@ -42,9 +47,14 @@ textarea {
 
 nav a,
 nav a:link {
+  color: white;
   text-decoration: none;
   font-size: 2.5rem;
   font-weight: 100;
+}
+
+a:hover{
+  color: #3AA8AC;
 }
 
 .active {
@@ -66,11 +76,13 @@ nav a:link {
 /* App */
 
 .main-title {
+  font-family: fenwick;
   padding: 0.5em;
-  color: #1eaedb;
+  color: white;
   margin: 0;
-  text-decoration-line: underline;
-  text-decoration-style: dotted;
+  text-shadow: 2px 2px 4px #000000;
+
+
 }
 
 .cards {
@@ -88,7 +100,9 @@ nav a:link {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  box-shadow: -3px 3px 10px 0px rgba(168, 168, 168, 0.4);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   text-align: center;
   background: #ddd;
   transition: all 0.3s;
@@ -97,6 +111,7 @@ nav a:link {
 
 .card h4 {
     font-family: fenwick;
+    color: #3AA8AC;
 }
 
 .card:hover {

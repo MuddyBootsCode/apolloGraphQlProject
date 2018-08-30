@@ -13,7 +13,7 @@ const RecipePage = ({ match }) => {
        <Query query={ GET_RECIPE } variables={{ _id }}>
 
            {({ data, loading, error }) => {
-               if (loading) return <Spinner/>
+               if (loading) return <Spinner className="spinner"/>
                if (error) return <div>{error}</div>
 
                const { getRecipe: { name, imageUrl, category, description, instructions, likes, username} } = data;
