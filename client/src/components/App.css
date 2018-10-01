@@ -22,6 +22,10 @@ nav {
   background-image: url("https://res.cloudinary.com/dqfo7smhl/image/upload/v1535591436/Backgrounds/IMG_7326.jpg");
 }
 
+nav h4{
+  color: white
+}
+
 nav ul {
   display: flex;
   align-items: center;
